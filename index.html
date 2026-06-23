@@ -41,145 +41,176 @@
         }
 
         /* ====================================================
-                   WELCOME MENU / BANNER (RAPI & ELEGAN)
+                   WELCOME SECTION (FULL HALAMAN PERTAMA)
                 ==================================================== */
-        .welcome-menu {
-            width: 100%;
-            padding: 18px 20px 14px;
-            text-align: center;
-            background: rgba(26, 31, 42, 0.55);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(246, 184, 61, 0.12);
-            transform-style: preserve-3d;
-            animation: floatMenu 5s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .welcome-menu::before {
-            content: '';
-            position: absolute;
-            top: -60%;
-            left: -20%;
-            width: 140%;
-            height: 200%;
-            background: radial-gradient(ellipse at 30% 50%, rgba(246, 184, 61, 0.04), transparent 60%);
-            animation: rotateGlow 12s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes rotateGlow {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes floatMenu {
-            0%,
-            100% {
-                transform: translateY(0) rotateX(0.5deg);
-            }
-            50% {
-                transform: translateY(-3px) rotateX(-0.3deg);
-            }
-        }
-
-        .welcome-menu .menu-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .welcome-menu .menu-row {
+        .welcome-section {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
+            padding: 40px 20px;
+            position: relative;
+            background: rgba(11, 14, 20, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-bottom: 1px solid rgba(246, 184, 61, 0.1);
         }
 
-        .welcome-menu .menu-icon {
-            font-size: 1.6rem;
-            color: #f6b83d;
-            text-shadow: 0 0 25px rgba(246, 184, 61, 0.25);
-            animation: pulseIcon 3s ease-in-out infinite;
-            transform: translateZ(20px);
+        .welcome-section .welcome-inner {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            transform-style: preserve-3d;
+            animation: floatWelcome 6s ease-in-out infinite;
         }
 
-        @keyframes pulseIcon {
+        @keyframes floatWelcome {
             0%,
             100% {
-                transform: scale(1) translateZ(20px);
+                transform: translateY(0) rotateX(1deg);
             }
             50% {
-                transform: scale(1.08) translateZ(30px);
+                transform: translateY(-10px) rotateX(-0.5deg);
             }
         }
 
-        .welcome-menu h2 {
-            font-size: 1.7rem;
-            font-weight: 700;
+        .welcome-section .logo-big {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #f6b83d;
+            box-shadow: 0 0 60px rgba(246, 184, 61, 0.3), 0 0 120px rgba(246, 184, 61, 0.1);
+            margin: 0 auto 24px;
+            transform: rotateY(0deg) scale(1);
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .welcome-section .logo-big:hover {
+            transform: rotateY(360deg) scale(1.05);
+        }
+
+        .welcome-section .logo-big img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .welcome-section h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
             background: linear-gradient(135deg, #f6b83d, #fcd34d, #f6b83d);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmer 4s ease-in-out infinite;
-            letter-spacing: 2px;
-            transform: translateZ(18px);
-            text-shadow: none;
-            line-height: 1.2;
+            letter-spacing: 3px;
+            transform: translateZ(30px);
+            line-height: 1.1;
         }
 
-        .welcome-menu .menu-sub {
-            font-size: 0.8rem;
-            color: #aab;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            opacity: 0.7;
-            transform: translateZ(12px);
-            font-weight: 300;
-        }
-
-        .welcome-menu .menu-divider {
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #f6b83d, transparent);
-            margin: 4px auto 0;
-            border-radius: 4px;
-            transform: translateZ(8px);
-            animation: expandDivider 3.5s ease-in-out infinite;
-        }
-
-        @keyframes expandDivider {
+        @keyframes shimmer {
             0%,
             100% {
-                width: 70px;
-                opacity: 0.5;
+                background-position: 0% 50%;
             }
             50% {
-                width: 160px;
-                opacity: 1;
+                background-position: 100% 50%;
             }
         }
 
-        /* ===== CONTAINER ===== */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 20px 20px 60px;
+        .welcome-section .subtitle {
+            font-size: 1.2rem;
+            color: #aab;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-top: 8px;
+            opacity: 0.8;
+            transform: translateZ(20px);
         }
 
-        /* ===== HEADER / LOGO ===== */
+        .welcome-section .desc {
+            font-size: 1.1rem;
+            color: #ccd;
+            max-width: 600px;
+            margin: 20px auto 32px;
+            line-height: 1.7;
+            transform: translateZ(15px);
+            opacity: 0.9;
+        }
+
+        .welcome-section .desc i {
+            color: #f6b83d;
+        }
+
+        .btn-show-products {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 48px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0b0e14;
+            background: linear-gradient(135deg, #f6b83d, #fcd34d);
+            border: none;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease,
+                background 0.3s ease;
+            box-shadow: 0 8px 40px rgba(246, 184, 61, 0.3);
+            transform-style: preserve-3d;
+            transform: translateZ(40px);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-show-products:hover {
+            transform: translateY(-6px) scale(1.05) translateZ(50px);
+            box-shadow: 0 20px 60px rgba(246, 184, 61, 0.5);
+            background: linear-gradient(135deg, #fcd34d, #f6b83d);
+        }
+
+        .btn-show-products i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-show-products:hover i {
+            transform: translateX(6px);
+        }
+
+        /* ====================================================
+                   PRODUCT SECTION (SEMULA TERSEMBUNYI)
+                ==================================================== */
+        .product-section {
+            display: none;
+            padding: 40px 20px 60px;
+            animation: fadeSlideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .product-section.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .product-section .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
         .header {
             display: flex;
             flex-direction: column;
@@ -200,9 +231,9 @@
             }
         }
 
-        .logo-wrapper {
-            width: 140px;
-            height: 140px;
+        .header .logo-wrapper {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             overflow: hidden;
             border: 4px solid #f6b83d;
@@ -213,11 +244,11 @@
             background: #1a1f2a;
         }
 
-        .logo-wrapper:hover {
+        .header .logo-wrapper:hover {
             transform: rotateY(360deg) scale(1.05);
         }
 
-        .logo-wrapper img {
+        .header .logo-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -225,7 +256,7 @@
         }
 
         .header h1 {
-            font-size: 2.6rem;
+            font-size: 2.4rem;
             font-weight: 800;
             background: linear-gradient(135deg, #f6b83d, #fcd34d, #f6b83d);
             background-size: 200% 200%;
@@ -234,16 +265,6 @@
             animation: shimmer 3s ease-in-out infinite;
             text-shadow: none;
             letter-spacing: 2px;
-        }
-
-        @keyframes shimmer {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
         }
 
         .header .subtitle {
@@ -582,37 +603,30 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .welcome-menu h2 {
-                font-size: 1.3rem;
-                letter-spacing: 1.5px;
+            .welcome-section h1 {
+                font-size: 2.6rem;
             }
-            .welcome-menu .menu-sub {
-                font-size: 0.7rem;
-                letter-spacing: 4px;
+            .welcome-section .subtitle {
+                font-size: 1rem;
+                letter-spacing: 5px;
             }
-            .welcome-menu .menu-icon {
-                font-size: 1.3rem;
+            .welcome-section .desc {
+                font-size: 1rem;
+                padding: 0 10px;
             }
-            .welcome-menu {
-                padding: 14px 16px 10px;
+            .welcome-section .logo-big {
+                width: 130px;
+                height: 130px;
             }
-            .welcome-menu .menu-divider {
-                width: 70px;
-            }
-            @keyframes expandDivider {
-                0%,
-                100% {
-                    width: 50px;
-                }
-                50% {
-                    width: 120px;
-                }
+            .btn-show-products {
+                padding: 15px 36px;
+                font-size: 1rem;
             }
 
             .header h1 {
                 font-size: 1.9rem;
             }
-            .logo-wrapper {
+            .header .logo-wrapper {
                 width: 110px;
                 height: 110px;
             }
@@ -656,34 +670,25 @@
         }
 
         @media (max-width: 480px) {
-            .welcome-menu h2 {
-                font-size: 1.0rem;
+            .welcome-section h1 {
+                font-size: 2rem;
                 letter-spacing: 1px;
             }
-            .welcome-menu .menu-sub {
-                font-size: 0.6rem;
-                letter-spacing: 3px;
+            .welcome-section .subtitle {
+                font-size: 0.8rem;
+                letter-spacing: 4px;
             }
-            .welcome-menu .menu-icon {
-                font-size: 1.1rem;
+            .welcome-section .desc {
+                font-size: 0.9rem;
             }
-            .welcome-menu {
-                padding: 10px 12px 8px;
+            .welcome-section .logo-big {
+                width: 100px;
+                height: 100px;
             }
-            .welcome-menu .menu-divider {
-                width: 50px;
-            }
-            @keyframes expandDivider {
-                0%,
-                100% {
-                    width: 40px;
-                }
-                50% {
-                    width: 90px;
-                }
-            }
-            .welcome-menu .menu-row {
-                gap: 8px;
+            .btn-show-products {
+                padding: 12px 28px;
+                font-size: 0.9rem;
+                gap: 10px;
             }
 
             .product-grid {
@@ -711,8 +716,8 @@
                 right: 6px;
                 padding: 1px 8px;
             }
-            .container {
-                padding: 12px 12px 40px;
+            .product-section {
+                padding: 20px 12px 40px;
             }
             .audio-control {
                 width: 44px;
@@ -727,186 +732,193 @@
 <body>
 
     <!-- ====================================================
-    WELCOME MENU / BANNER (RAPI & ELEGAN)
+    SECTION 1: WELCOME (FULL HALAMAN)
     ==================================================== -->
-    <div class="welcome-menu">
-        <div class="menu-content">
-            <div class="menu-row">
-                <span class="menu-icon"><i class="fas fa-crown"></i></span>
-                <h2>WELCOME TO DANZ STORE</h2>
-                <span class="menu-icon"><i class="fas fa-crown"></i></span>
+    <section class="welcome-section" id="welcomeSection">
+        <div class="welcome-inner">
+            <div class="logo-big">
+                <img src="https://files.catbox.moe/6gmn6x.jpg" alt="DANZ STORE" />
             </div>
-            <p class="menu-sub"></p>
-            <div class="menu-divider"></div>
-        </div>
-    </div>
-
-    <!-- ===== MAIN CONTENT ===== -->
-    <div class="container">
-
-        <!-- ===== HEADER ===== -->
-        <header class="header" id="top">
-            <div class="logo-wrapper">
-                <img src="https://files.catbox.moe/6gmn6x.jpg" alt="DANZ STORE Logo" loading="lazy" />
-            </div>
-            <h1>DANZ STORE</h1>
+            <h1>WELCOME TO WEBSITE DANZZ STORE</h1>
             <p class="subtitle"></p>
-        </header>
+            <p class="desc">
+            </p>
+            <button class="btn-show-products" id="showProductsBtn">
+                <i class="fas fa-box"></i> Lihat Produk <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
 
-        <!-- ===== PRODUK ===== -->
-        <h2 class="section-title" id="produk">
-            <i class="fas fa-cube"></i> LIST APK &amp; TOOLS
-        </h2>
+    <!-- ====================================================
+    SECTION 2: PRODUK (SEMULA TERSEMBUNYI)
+    ==================================================== -->
+    <section class="product-section" id="productSection">
+        <div class="container">
 
-        <div class="product-grid">
+            <!-- ===== HEADER ===== -->
+            <header class="header" id="top">
+                <div class="logo-wrapper">
+                    <img src="https://files.catbox.moe/6gmn6x.jpg" alt="DANZ STORE Logo" loading="lazy" />
+                </div>
+                <h1>DANZ STORE</h1>
+                <p class="subtitle"></p>
+            </header>
 
-            <!-- Apk Qris No Ktp -->
-            <div class="product-card" data-price="2k">
-                <div class="icon"><i class="fas fa-qrcode"></i></div>
-                <div class="name">Apk Qris No Ktp</div>
-                <div class="price">Rp 2.000</div>
-                <span class="badge">APK</span>
+            <!-- ===== PRODUK ===== -->
+            <h2 class="section-title" id="produk">
+                <i class="fas fa-cube"></i> LIST APK &amp; TOOLS
+            </h2>
+
+            <div class="product-grid">
+
+                <!-- Apk Qris No Ktp -->
+                <div class="product-card" data-price="2k">
+                    <div class="icon"><i class="fas fa-qrcode"></i></div>
+                    <div class="name">Apk Qris No Ktp</div>
+                    <div class="price">Rp 2.000</div>
+                    <span class="badge">APK</span>
+                </div>
+
+                <!-- Uncheck -->
+                <div class="product-card" data-price="5k-35k">
+                    <div class="icon"><i class="fas fa-check-double"></i></div>
+                    <div class="name">Uncheck</div>
+                    <div class="price">Rp 5.000 - 35.000</div>
+                    <span class="badge">TOOLS</span>
+                </div>
+
+                <!-- Apk JB -->
+                <div class="product-card" data-price="3k">
+                    <div class="icon"><i class="fas fa-robot"></i></div>
+                    <div class="name">Apk JB</div>
+                    <div class="price">Rp 3.000</div>
+                    <span class="badge">APK</span>
+                </div>
+
+                <!-- Apk Bioskop -->
+                <div class="product-card" data-price="2k">
+                    <div class="icon"><i class="fas fa-film"></i></div>
+                    <div class="name">Apk Bioskop</div>
+                    <div class="price">Rp 2.000</div>
+                    <span class="badge">APK</span>
+                </div>
+
+                <!-- Apk Cek Email -->
+                <div class="product-card" data-price="7k">
+                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                    <div class="name">Apk Cek Email</div>
+                    <div class="price">Rp 7.000</div>
+                    <span class="badge">APK</span>
+                </div>
+
+                <!-- Jasa Cek Email -->
+                <div class="product-card" data-price="2k">
+                    <div class="icon"><i class="fas fa-user-check"></i></div>
+                    <div class="name">Jasa Cek Email</div>
+                    <div class="price">Rp 2.000</div>
+                    <span class="badge">JASA</span>
+                </div>
+
+                <!-- Mursun -->
+                <div class="product-card" data-price="1k-3k">
+                    <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="name">Mursun</div>
+                    <div class="price">Rp 1.000 - 3.000</div>
+                    <span class="badge">TOOLS</span>
+                </div>
+
+                <!-- Suntik Sosmed -->
+                <div class="product-card" data-price="Hubungi Admin">
+                    <div class="icon"><i class="fas fa-syringe"></i></div>
+                    <div class="name">Suntik Sosmed</div>
+                    <div class="price">Hubungi Admin</div>
+                    <span class="badge badge-admin">ADMIN</span>
+                </div>
+
+                <!-- Apk Nonton Bola -->
+                <div class="product-card" data-price="2k">
+                    <div class="icon"><i class="fas fa-futbol"></i></div>
+                    <div class="name">Apk Nonton Bola</div>
+                    <div class="price">Rp 2.000</div>
+                    <span class="badge">APK</span>
+                </div>
+
+                <!-- Murnok -->
+                <div class="product-card" data-price="5k-7k">
+                    <div class="icon"><i class="fas fa-mask"></i></div>
+                    <div class="name">Murnok</div>
+                    <div class="price">Rp 5.000 - 7.000</div>
+                    <span class="badge">TOOLS</span>
+                </div>
+
+                <!-- Murlog -->
+                <div class="product-card" data-price="5k-10k">
+                    <div class="icon"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="name">Murlog</div>
+                    <div class="price">Rp 5.000 - 10.000</div>
+                    <span class="badge">TOOLS</span>
+                </div>
+
+                <!-- Poster -->
+                <div class="product-card" data-price="Hubungi Admin">
+                    <div class="icon"><i class="fas fa-paint-brush"></i></div>
+                    <div class="name">Poster</div>
+                    <div class="price">Hubungi Admin</div>
+                    <span class="badge badge-admin">ADMIN</span>
+                </div>
+
             </div>
 
-            <!-- Uncheck -->
-            <div class="product-card" data-price="5k-35k">
-                <div class="icon"><i class="fas fa-check-double"></i></div>
-                <div class="name">Uncheck</div>
-                <div class="price">Rp 5.000 - 35.000</div>
-                <span class="badge">TOOLS</span>
+            <!-- ===== FEE ===== -->
+            <h2 class="section-title" id="fee" style="margin-top:60px;">
+                <i class="fas fa-coins"></i> LIST FEE MC DANZ STORE
+            </h2>
+
+            <div class="fee-wrapper">
+                <div class="fee-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nominal Transaksi</th>
+                                <th>Fee</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0 - 50K</td><td class="highlight">Rp 3.000</td></tr>
+                            <tr><td>51 - 100K</td><td class="highlight">Rp 5.000</td></tr>
+                            <tr><td>101 - 399K</td><td class="highlight">Rp 7.000</td></tr>
+                            <tr><td>400 - 699K</td><td class="highlight">Rp 10.000</td></tr>
+                            <tr><td>700 - 999K</td><td class="highlight">Rp 12.000</td></tr>
+                            <tr><td>1JT - DST</td><td class="highlight">Rp 15.000</td></tr>
+                            <tr><td>BT / TT</td><td class="highlight">Rp 4.000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <!-- Apk JB -->
-            <div class="product-card" data-price="3k">
-                <div class="icon"><i class="fas fa-robot"></i></div>
-                <div class="name">Apk JB</div>
-                <div class="price">Rp 3.000</div>
-                <span class="badge">APK</span>
+            <!-- ===== KONTAK ===== -->
+            <h2 class="section-title" id="kontak" style="margin-top:60px;">
+                <i class="fas fa-address-book"></i> Hubungi Kami
+            </h2>
+
+            <div class="contact-section">
+                <a href="https://wa.me/6287872666784" target="_blank" class="contact-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://chat.whatsapp.com/HckR3ER4jzo2jUtrCuyB50" target="_blank" class="contact-btn group">
+                    <i class="fas fa-users"></i> Grup WhatsApp
+                </a>
+                <a href="https://whatsapp.com/channel/0029Vb7fhli2f3EPBnPcfj29" target="_blank" class="contact-btn channel">
+                    <i class="fas fa-broadcast"></i> Saluran WhatsApp
+                </a>
             </div>
 
-            <!-- Apk Bioskop -->
-            <div class="product-card" data-price="2k">
-                <div class="icon"><i class="fas fa-film"></i></div>
-                <div class="name">Apk Bioskop</div>
-                <div class="price">Rp 2.000</div>
-                <span class="badge">APK</span>
-            </div>
-
-            <!-- Apk Cek Email -->
-            <div class="product-card" data-price="7k">
-                <div class="icon"><i class="fas fa-envelope"></i></div>
-                <div class="name">Apk Cek Email</div>
-                <div class="price">Rp 7.000</div>
-                <span class="badge">APK</span>
-            </div>
-
-            <!-- Jasa Cek Email -->
-            <div class="product-card" data-price="2k">
-                <div class="icon"><i class="fas fa-user-check"></i></div>
-                <div class="name">Jasa Cek Email</div>
-                <div class="price">Rp 2.000</div>
-                <span class="badge">JASA</span>
-            </div>
-
-            <!-- Mursun -->
-            <div class="product-card" data-price="1k-3k">
-                <div class="icon"><i class="fas fa-shield-alt"></i></div>
-                <div class="name">Mursun</div>
-                <div class="price">Rp 1.000 - 3.000</div>
-                <span class="badge">TOOLS</span>
-            </div>
-
-            <!-- Suntik Sosmed -->
-            <div class="product-card" data-price="Hubungi Admin">
-                <div class="icon"><i class="fas fa-syringe"></i></div>
-                <div class="name">Suntik Sosmed</div>
-                <div class="price">Hubungi Admin</div>
-                <span class="badge badge-admin">ADMIN</span>
-            </div>
-
-            <!-- Apk Nonton Bola -->
-            <div class="product-card" data-price="2k">
-                <div class="icon"><i class="fas fa-futbol"></i></div>
-                <div class="name">Apk Nonton Bola</div>
-                <div class="price">Rp 2.000</div>
-                <span class="badge">APK</span>
-            </div>
-
-            <!-- Murnok -->
-            <div class="product-card" data-price="5k-7k">
-                <div class="icon"><i class="fas fa-mask"></i></div>
-                <div class="name">Murnok</div>
-                <div class="price">Rp 5.000 - 7.000</div>
-                <span class="badge">TOOLS</span>
-            </div>
-
-            <!-- Murlog -->
-            <div class="product-card" data-price="5k-10k">
-                <div class="icon"><i class="fas fa-clipboard-list"></i></div>
-                <div class="name">Murlog</div>
-                <div class="price">Rp 5.000 - 10.000</div>
-                <span class="badge">TOOLS</span>
-            </div>
-
-            <!-- Poster -->
-            <div class="product-card" data-price="Hubungi Admin">
-                <div class="icon"><i class="fas fa-paint-brush"></i></div>
-                <div class="name">Poster</div>
-                <div class="price">Hubungi Admin</div>
-                <span class="badge badge-admin">ADMIN</span>
+            <!-- ===== FOOTER ===== -->
+            <div class="footer">
             </div>
 
         </div>
-
-        <!-- ===== FEE ===== -->
-        <h2 class="section-title" id="fee" style="margin-top:60px;">
-            <i class="fas fa-coins"></i> LIST FEE MC DANZ STORE
-        </h2>
-
-        <div class="fee-wrapper">
-            <div class="fee-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nominal Transaksi</th>
-                            <th>Fee</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>0 - 50K</td><td class="highlight">Rp 3.000</td></tr>
-                        <tr><td>51 - 100K</td><td class="highlight">Rp 5.000</td></tr>
-                        <tr><td>101 - 399K</td><td class="highlight">Rp 7.000</td></tr>
-                        <tr><td>400 - 699K</td><td class="highlight">Rp 10.000</td></tr>
-                        <tr><td>700 - 999K</td><td class="highlight">Rp 12.000</td></tr>
-                        <tr><td>1JT - DST</td><td class="highlight">Rp 15.000</td></tr>
-                        <tr><td>BT / TT</td><td class="highlight">Rp 4.000</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- ===== KONTAK ===== -->
-        <h2 class="section-title" id="kontak" style="margin-top:60px;">
-            <i class="fas fa-address-book"></i> Hubungi Kami
-        </h2>
-
-        <div class="contact-section">
-            <a href="https://wa.me/6287872666784" target="_blank" class="contact-btn whatsapp">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-            <a href="https://chat.whatsapp.com/HckR3ER4jzo2jUtrCuyB50" target="_blank" class="contact-btn group">
-                <i class="fas fa-users"></i> Grup WhatsApp
-            </a>
-            <a href="https://whatsapp.com/channel/0029Vb7fhli2f3EPBnPcfj29" target="_blank" class="contact-btn channel">
-                <i class="fas fa-broadcast"></i> Saluran WhatsApp
-            </a>
-        </div>
-
-        <!-- ===== FOOTER ===== -->
-
-        </div>
-
-    </div>
+    </section>
 
     <!-- ===== AUDIO PLAYER (AUTOPLAY + LOOP) ===== -->
     <audio id="bgAudio" autoplay loop muted>
@@ -922,7 +934,25 @@
     <!-- ===== SCRIPTS ===== -->
     <script>
         (function() {
-            // ---- 3D TILT CARDS ----
+            // ---- TOMBOL SHOW PRODUCTS ----
+            const showBtn = document.getElementById('showProductsBtn');
+            const productSection = document.getElementById('productSection');
+            const welcomeSection = document.getElementById('welcomeSection');
+
+            showBtn.addEventListener('click', function() {
+                // Tampilkan section produk
+                productSection.classList.add('active');
+
+                // Scroll ke produk dengan efek smooth
+                setTimeout(() => {
+                    productSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+
+                // Opsional: sembunyikan welcome section agar lebih fokus
+                welcomeSection.style.display = 'none';
+            });
+
+            // ---- 3D TILT CARDS (hanya aktif jika kartu ada) ----
             const cards = document.querySelectorAll('.product-card');
             cards.forEach(card => {
                 card.addEventListener('mousemove', function(e) {
