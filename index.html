@@ -1,1 +1,1016 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DANZ STORE - 3D Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: #0b0e14;
+            color: #f0f0f0;
+            perspective: 1200px;
+            overflow-x: hidden;
+            background-image: url('https://files.catbox.moe/6gmn6x.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            background-color: rgba(11, 14, 20, 0.85);
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1f2a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f6b83d;
+            border-radius: 10px;
+        }
+
+        /* ====================================================
+                   WELCOME MENU / BANNER (RAPI & ELEGAN)
+                ==================================================== */
+        .welcome-menu {
+            width: 100%;
+            padding: 18px 20px 14px;
+            text-align: center;
+            background: rgba(26, 31, 42, 0.55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(246, 184, 61, 0.12);
+            transform-style: preserve-3d;
+            animation: floatMenu 5s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-menu::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -20%;
+            width: 140%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(246, 184, 61, 0.04), transparent 60%);
+            animation: rotateGlow 12s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotateGlow {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes floatMenu {
+            0%,
+            100% {
+                transform: translateY(0) rotateX(0.5deg);
+            }
+            50% {
+                transform: translateY(-3px) rotateX(-0.3deg);
+            }
+        }
+
+        .welcome-menu .menu-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .welcome-menu .menu-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .welcome-menu .menu-icon {
+            font-size: 1.6rem;
+            color: #f6b83d;
+            text-shadow: 0 0 25px rgba(246, 184, 61, 0.25);
+            animation: pulseIcon 3s ease-in-out infinite;
+            transform: translateZ(20px);
+        }
+
+        @keyframes pulseIcon {
+            0%,
+            100% {
+                transform: scale(1) translateZ(20px);
+            }
+            50% {
+                transform: scale(1.08) translateZ(30px);
+            }
+        }
+
+        .welcome-menu h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f6b83d, #fcd34d, #f6b83d);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s ease-in-out infinite;
+            letter-spacing: 2px;
+            transform: translateZ(18px);
+            text-shadow: none;
+            line-height: 1.2;
+        }
+
+        .welcome-menu .menu-sub {
+            font-size: 0.8rem;
+            color: #aab;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            transform: translateZ(12px);
+            font-weight: 300;
+        }
+
+        .welcome-menu .menu-divider {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #f6b83d, transparent);
+            margin: 4px auto 0;
+            border-radius: 4px;
+            transform: translateZ(8px);
+            animation: expandDivider 3.5s ease-in-out infinite;
+        }
+
+        @keyframes expandDivider {
+            0%,
+            100% {
+                width: 70px;
+                opacity: 0.5;
+            }
+            50% {
+                width: 160px;
+                opacity: 1;
+            }
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 20px 20px 60px;
+        }
+
+        /* ===== HEADER / LOGO ===== */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 40px;
+            transform-style: preserve-3d;
+            animation: floatHeader 4s ease-in-out infinite;
+        }
+
+        @keyframes floatHeader {
+            0%,
+            100% {
+                transform: translateY(0) rotateX(2deg);
+            }
+            50% {
+                transform: translateY(-8px) rotateX(-1deg);
+            }
+        }
+
+        .logo-wrapper {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #f6b83d;
+            box-shadow: 0 0 40px rgba(246, 184, 61, 0.4), 0 0 80px rgba(246, 184, 61, 0.15);
+            transform: rotateY(0deg) scale(1);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-bottom: 16px;
+            background: #1a1f2a;
+        }
+
+        .logo-wrapper:hover {
+            transform: rotateY(360deg) scale(1.05);
+        }
+
+        .logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f6b83d, #fcd34d, #f6b83d);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+            text-shadow: none;
+            letter-spacing: 2px;
+        }
+
+        @keyframes shimmer {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .header .subtitle {
+            color: #aab;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 4px;
+            opacity: 0.8;
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 50px 0 24px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, #f6b83d, transparent) 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: #f6b83d;
+            font-size: 1.6rem;
+        }
+
+        /* ===== 3D CARD GRID ===== */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 28px;
+            perspective: 1200px;
+        }
+
+        .product-card {
+            background: rgba(26, 31, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(246, 184, 61, 0.2);
+            border-radius: 20px;
+            padding: 22px 16px 18px;
+            text-align: center;
+            transform-style: preserve-3d;
+            transform: rotateY(0deg) rotateX(0deg) scale(1);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease,
+                border-color 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            cursor: default;
+            position: relative;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 20px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(246, 184, 61, 0.3), transparent 60%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: rotateY(8deg) rotateX(4deg) scale(1.03);
+            box-shadow: 0 20px 60px rgba(246, 184, 61, 0.25), 0 0 40px rgba(246, 184, 61, 0.1);
+            border-color: rgba(246, 184, 61, 0.5);
+        }
+
+        .product-card .icon {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            color: #f6b83d;
+            text-shadow: 0 0 20px rgba(246, 184, 61, 0.3);
+            transform: translateZ(30px);
+        }
+
+        .product-card .name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            transform: translateZ(20px);
+            line-height: 1.3;
+        }
+
+        .product-card .price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #f6b83d;
+            margin-top: 6px;
+            transform: translateZ(35px);
+            background: rgba(246, 184, 61, 0.08);
+            padding: 4px 16px;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid rgba(246, 184, 61, 0.15);
+        }
+
+        .product-card .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.6rem;
+            background: rgba(246, 184, 61, 0.2);
+            color: #f6b83d;
+            padding: 2px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(246, 184, 61, 0.25);
+            transform: translateZ(40px);
+            letter-spacing: 0.5px;
+        }
+
+        .product-card .badge-admin {
+            background: rgba(52, 211, 153, 0.2);
+            color: #34d399;
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+
+        /* ===== FEE TABLE (3D) ===== */
+        .fee-wrapper {
+            perspective: 1200px;
+            margin-top: 10px;
+        }
+
+        .fee-table {
+            width: 100%;
+            background: rgba(26, 31, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(246, 184, 61, 0.15);
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .fee-table:hover {
+            transform: rotateY(2deg) rotateX(2deg) scale(1.01);
+            box-shadow: 0 20px 60px rgba(246, 184, 61, 0.15);
+            border-color: rgba(246, 184, 61, 0.3);
+        }
+
+        .fee-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .fee-table thead {
+            background: linear-gradient(135deg, rgba(246, 184, 61, 0.2), rgba(246, 184, 61, 0.05));
+        }
+
+        .fee-table th {
+            padding: 16px 20px;
+            text-align: left;
+            color: #f6b83d;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid rgba(246, 184, 61, 0.2);
+        }
+
+        .fee-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #ddd;
+            transition: background 0.2s ease;
+        }
+
+        .fee-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .fee-table tbody tr:hover td {
+            background: rgba(246, 184, 61, 0.05);
+        }
+
+        .fee-table .highlight {
+            color: #f6b83d;
+            font-weight: 600;
+        }
+
+        /* ===== CONTACT BUTTONS ===== */
+        .contact-section {
+            margin-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            perspective: 1200px;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #fff;
+            background: rgba(26, 31, 42, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(246, 184, 61, 0.25);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease,
+                border-color 0.3s ease,
+                background 0.3s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-btn i {
+            font-size: 1.3rem;
+            color: #f6b83d;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-6px) scale(1.04) rotateX(2deg);
+            box-shadow: 0 16px 48px rgba(246, 184, 61, 0.2);
+            border-color: #f6b83d;
+            background: rgba(246, 184, 61, 0.12);
+        }
+
+        .contact-btn.whatsapp {
+            border-color: rgba(37, 211, 102, 0.3);
+        }
+        .contact-btn.whatsapp i {
+            color: #25d366;
+        }
+        .contact-btn.whatsapp:hover {
+            border-color: #25d366;
+            background: rgba(37, 211, 102, 0.12);
+            box-shadow: 0 16px 48px rgba(37, 211, 102, 0.2);
+        }
+
+        .contact-btn.group {
+            border-color: rgba(37, 211, 102, 0.2);
+        }
+        .contact-btn.group i {
+            color: #25d366;
+        }
+        .contact-btn.group:hover {
+            border-color: #25d366;
+            background: rgba(37, 211, 102, 0.10);
+        }
+
+        .contact-btn.channel {
+            border-color: rgba(52, 211, 153, 0.25);
+        }
+        .contact-btn.channel i {
+            color: #34d399;
+        }
+        .contact-btn.channel:hover {
+            border-color: #34d399;
+            background: rgba(52, 211, 153, 0.10);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 28px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer span {
+            color: #f6b83d;
+        }
+
+        /* ===== AUDIO CONTROL BUTTON ===== */
+        .audio-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            background: rgba(26, 31, 42, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(246, 184, 61, 0.3);
+            border-radius: 60px;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: #f6b83d;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+        }
+
+        .audio-control:hover {
+            transform: scale(1.12) rotateY(4deg);
+            border-color: #f6b83d;
+            box-shadow: 0 0 40px rgba(246, 184, 61, 0.25);
+        }
+
+        .audio-control i {
+            filter: drop-shadow(0 0 8px rgba(246, 184, 61, 0.3));
+        }
+
+        .audio-control.muted {
+            border-color: rgba(255, 255, 255, 0.15);
+            color: #888;
+        }
+
+        .audio-control.muted i {
+            filter: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .welcome-menu h2 {
+                font-size: 1.3rem;
+                letter-spacing: 1.5px;
+            }
+            .welcome-menu .menu-sub {
+                font-size: 0.7rem;
+                letter-spacing: 4px;
+            }
+            .welcome-menu .menu-icon {
+                font-size: 1.3rem;
+            }
+            .welcome-menu {
+                padding: 14px 16px 10px;
+            }
+            .welcome-menu .menu-divider {
+                width: 70px;
+            }
+            @keyframes expandDivider {
+                0%,
+                100% {
+                    width: 50px;
+                }
+                50% {
+                    width: 120px;
+                }
+            }
+
+            .header h1 {
+                font-size: 1.9rem;
+            }
+            .logo-wrapper {
+                width: 110px;
+                height: 110px;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 18px;
+            }
+            .product-card {
+                padding: 16px 12px;
+                min-height: 130px;
+            }
+            .product-card .name {
+                font-size: 0.85rem;
+            }
+            .product-card .price {
+                font-size: 1rem;
+                padding: 2px 12px;
+            }
+            .fee-table table {
+                font-size: 0.8rem;
+            }
+            .fee-table th,
+            .fee-table td {
+                padding: 10px 12px;
+            }
+            .contact-btn {
+                padding: 12px 22px;
+                font-size: 0.85rem;
+                gap: 8px;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .audio-control {
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-menu h2 {
+                font-size: 1.0rem;
+                letter-spacing: 1px;
+            }
+            .welcome-menu .menu-sub {
+                font-size: 0.6rem;
+                letter-spacing: 3px;
+            }
+            .welcome-menu .menu-icon {
+                font-size: 1.1rem;
+            }
+            .welcome-menu {
+                padding: 10px 12px 8px;
+            }
+            .welcome-menu .menu-divider {
+                width: 50px;
+            }
+            @keyframes expandDivider {
+                0%,
+                100% {
+                    width: 40px;
+                }
+                50% {
+                    width: 90px;
+                }
+            }
+            .welcome-menu .menu-row {
+                gap: 8px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+            }
+            .product-card {
+                padding: 12px 8px;
+                min-height: 110px;
+                border-radius: 14px;
+            }
+            .product-card .icon {
+                font-size: 1.6rem;
+            }
+            .product-card .name {
+                font-size: 0.75rem;
+            }
+            .product-card .price {
+                font-size: 0.85rem;
+                padding: 2px 10px;
+            }
+            .product-card .badge {
+                font-size: 0.5rem;
+                top: 6px;
+                right: 6px;
+                padding: 1px 8px;
+            }
+            .container {
+                padding: 12px 12px 40px;
+            }
+            .audio-control {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====================================================
+    WELCOME MENU / BANNER (RAPI & ELEGAN)
+    ==================================================== -->
+    <div class="welcome-menu">
+        <div class="menu-content">
+            <div class="menu-row">
+                <span class="menu-icon"><i class="fas fa-crown"></i></span>
+                <h2>WELCOME TO DANZ STORE</h2>
+                <span class="menu-icon"><i class="fas fa-crown"></i></span>
+            </div>
+            <p class="menu-sub"></p>
+            <div class="menu-divider"></div>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <header class="header" id="top">
+            <div class="logo-wrapper">
+                <img src="https://files.catbox.moe/6gmn6x.jpg" alt="DANZ STORE Logo" loading="lazy" />
+            </div>
+            <h1>DANZ STORE</h1>
+            <p class="subtitle"></p>
+        </header>
+
+        <!-- ===== PRODUK ===== -->
+        <h2 class="section-title" id="produk">
+            <i class="fas fa-cube"></i> LIST APK &amp; TOOLS
+        </h2>
+
+        <div class="product-grid">
+
+            <!-- Apk Qris No Ktp -->
+            <div class="product-card" data-price="2k">
+                <div class="icon"><i class="fas fa-qrcode"></i></div>
+                <div class="name">Apk Qris No Ktp</div>
+                <div class="price">Rp 2.000</div>
+                <span class="badge">APK</span>
+            </div>
+
+            <!-- Uncheck -->
+            <div class="product-card" data-price="5k-35k">
+                <div class="icon"><i class="fas fa-check-double"></i></div>
+                <div class="name">Uncheck</div>
+                <div class="price">Rp 5.000 - 35.000</div>
+                <span class="badge">TOOLS</span>
+            </div>
+
+            <!-- Apk JB -->
+            <div class="product-card" data-price="3k">
+                <div class="icon"><i class="fas fa-robot"></i></div>
+                <div class="name">Apk JB</div>
+                <div class="price">Rp 3.000</div>
+                <span class="badge">APK</span>
+            </div>
+
+            <!-- Apk Bioskop -->
+            <div class="product-card" data-price="2k">
+                <div class="icon"><i class="fas fa-film"></i></div>
+                <div class="name">Apk Bioskop</div>
+                <div class="price">Rp 2.000</div>
+                <span class="badge">APK</span>
+            </div>
+
+            <!-- Apk Cek Email -->
+            <div class="product-card" data-price="7k">
+                <div class="icon"><i class="fas fa-envelope"></i></div>
+                <div class="name">Apk Cek Email</div>
+                <div class="price">Rp 7.000</div>
+                <span class="badge">APK</span>
+            </div>
+
+            <!-- Jasa Cek Email -->
+            <div class="product-card" data-price="2k">
+                <div class="icon"><i class="fas fa-user-check"></i></div>
+                <div class="name">Jasa Cek Email</div>
+                <div class="price">Rp 2.000</div>
+                <span class="badge">JASA</span>
+            </div>
+
+            <!-- Mursun -->
+            <div class="product-card" data-price="1k-3k">
+                <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="name">Mursun</div>
+                <div class="price">Rp 1.000 - 3.000</div>
+                <span class="badge">TOOLS</span>
+            </div>
+
+            <!-- Suntik Sosmed -->
+            <div class="product-card" data-price="Hubungi Admin">
+                <div class="icon"><i class="fas fa-syringe"></i></div>
+                <div class="name">Suntik Sosmed</div>
+                <div class="price">Hubungi Admin</div>
+                <span class="badge badge-admin">ADMIN</span>
+            </div>
+
+            <!-- Apk Nonton Bola -->
+            <div class="product-card" data-price="2k">
+                <div class="icon"><i class="fas fa-futbol"></i></div>
+                <div class="name">Apk Nonton Bola</div>
+                <div class="price">Rp 2.000</div>
+                <span class="badge">APK</span>
+            </div>
+
+            <!-- Murnok -->
+            <div class="product-card" data-price="5k-7k">
+                <div class="icon"><i class="fas fa-mask"></i></div>
+                <div class="name">Murnok</div>
+                <div class="price">Rp 5.000 - 7.000</div>
+                <span class="badge">TOOLS</span>
+            </div>
+
+            <!-- Murlog -->
+            <div class="product-card" data-price="5k-10k">
+                <div class="icon"><i class="fas fa-clipboard-list"></i></div>
+                <div class="name">Murlog</div>
+                <div class="price">Rp 5.000 - 10.000</div>
+                <span class="badge">TOOLS</span>
+            </div>
+
+            <!-- Poster -->
+            <div class="product-card" data-price="Hubungi Admin">
+                <div class="icon"><i class="fas fa-paint-brush"></i></div>
+                <div class="name">Poster</div>
+                <div class="price">Hubungi Admin</div>
+                <span class="badge badge-admin">ADMIN</span>
+            </div>
+
+        </div>
+
+        <!-- ===== FEE ===== -->
+        <h2 class="section-title" id="fee" style="margin-top:60px;">
+            <i class="fas fa-coins"></i> LIST FEE MC DANZ STORE
+        </h2>
+
+        <div class="fee-wrapper">
+            <div class="fee-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nominal Transaksi</th>
+                            <th>Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0 - 50K</td><td class="highlight">Rp 3.000</td></tr>
+                        <tr><td>51 - 100K</td><td class="highlight">Rp 5.000</td></tr>
+                        <tr><td>101 - 399K</td><td class="highlight">Rp 7.000</td></tr>
+                        <tr><td>400 - 699K</td><td class="highlight">Rp 10.000</td></tr>
+                        <tr><td>700 - 999K</td><td class="highlight">Rp 12.000</td></tr>
+                        <tr><td>1JT - DST</td><td class="highlight">Rp 15.000</td></tr>
+                        <tr><td>BT / TT</td><td class="highlight">Rp 4.000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ===== KONTAK ===== -->
+        <h2 class="section-title" id="kontak" style="margin-top:60px;">
+            <i class="fas fa-address-book"></i> Hubungi Kami
+        </h2>
+
+        <div class="contact-section">
+            <a href="https://wa.me/6287872666784" target="_blank" class="contact-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://chat.whatsapp.com/HckR3ER4jzo2jUtrCuyB50" target="_blank" class="contact-btn group">
+                <i class="fas fa-users"></i> Grup WhatsApp
+            </a>
+            <a href="https://whatsapp.com/channel/0029Vb7fhli2f3EPBnPcfj29" target="_blank" class="contact-btn channel">
+                <i class="fas fa-broadcast"></i> Saluran WhatsApp
+            </a>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+
+        </div>
+
+    </div>
+
+    <!-- ===== AUDIO PLAYER (AUTOPLAY + LOOP) ===== -->
+    <audio id="bgAudio" autoplay loop muted>
+        <source src="https://l.top4top.io/m_38261nu5o0.mp3" type="audio/mpeg" />
+        Browser tidak mendukung audio.
+    </audio>
+
+    <!-- ===== AUDIO CONTROL BUTTON ===== -->
+    <div id="audioToggle" class="audio-control muted" title="Klik untuk menghidupkan/mematikan suara">
+        <i class="fas fa-volume-mute"></i>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            // ---- 3D TILT CARDS ----
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateY = ((x - centerX) / centerX) * 12;
+                    const rotateX = ((centerY - y) / centerY) * 12;
+                    this.style.transform =
+                        `rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(1.04)`;
+                    this.style.transition = 'transform 0.08s ease-out';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+                    this.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                });
+            });
+
+            // ---- 3D TILT FEE TABLE ----
+            const feeTable = document.querySelector('.fee-table');
+            if (feeTable) {
+                feeTable.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+                    const rotateX = ((centerY - y) / centerY) * 5;
+                    this.style.transform =
+                        `rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(1.01)`;
+                    this.style.transition = 'transform 0.08s ease-out';
+                });
+                feeTable.addEventListener('mouseleave', function() {
+                    this.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+                    this.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                });
+            }
+
+            // ---- AUDIO TOGGLE ----
+            const audio = document.getElementById('bgAudio');
+            const toggleBtn = document.getElementById('audioToggle');
+            const icon = toggleBtn.querySelector('i');
+
+            function playAudio() {
+                audio.play().catch(() => {});
+            }
+
+            audio.muted = true;
+            toggleBtn.classList.add('muted');
+            icon.className = 'fas fa-volume-mute';
+
+            toggleBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (audio.muted) {
+                    audio.muted = false;
+                    toggleBtn.classList.remove('muted');
+                    icon.className = 'fas fa-volume-up';
+                    if (audio.paused) {
+                        audio.play().catch(() => {
+                            audio.muted = true;
+                            toggleBtn.classList.add('muted');
+                            icon.className = 'fas fa-volume-mute';
+                        });
+                    }
+                } else {
+                    audio.muted = true;
+                    toggleBtn.classList.add('muted');
+                    icon.className = 'fas fa-volume-mute';
+                }
+            });
+
+            window.addEventListener('load', function() {
+                playAudio();
+            });
+
+            document.addEventListener('click', function() {
+                if (audio.paused && !audio.muted) {
+                    audio.play().catch(() => {});
+                }
+            }, { once: true });
+
+            audio.volume = 0.5;
+
+        })();
+    </script>
+
+</body>
+</html>
